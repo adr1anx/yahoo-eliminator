@@ -3,3 +3,13 @@
 td.struck{
   text-decoration: line-through;
 }
+td.eliminated{
+  background-color: pink;
+}
+td.alive{
+  background-color: green;
+}
+td.dead{
+  background-color: black;
+  color: red;
+}
