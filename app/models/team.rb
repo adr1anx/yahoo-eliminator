@@ -1,5 +1,4 @@
 class Team < ApplicationRecord
-  self.implicit_order_column = "team_id DESC"
   has_many :weeks, -> { order('week_num ASC') }
   scope :alive, -> { where(eliminated_week: nil) }
 
