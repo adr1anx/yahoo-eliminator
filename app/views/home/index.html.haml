@@ -1,0 +1,19 @@
+%table.table
+  %thead
+    %tr
+      %th Team
+      - (1..16).each do |week|
+        %th= week
+  %tbody
+    - @teams.each do |team|
+      %tr{align: 'left'}
+        %td= team.name
+        - team.weeks.each do |week|
+          - if team.eliminated_week == week.week_num
+            %td{class: "struck"}= week.points
+          - elsif team.eliminated? && team.eliminated_week > week.week_num
+            %td= week.points
+          - elsif team.eliminated? && team.eliminated_week < week.week_num
+            %td -
+          - else
+            %td= week.points
