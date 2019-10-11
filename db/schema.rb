@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_231056) do
+ActiveRecord::Schema.define(version: 2019_10_11_014122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 2019_10_07_231056) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "eliminated_week"
+  end
+
+  create_table "tokens", force: :cascade do |t|
+    t.string "refresh_token"
+    t.string "access_token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "weeks", force: :cascade do |t|
