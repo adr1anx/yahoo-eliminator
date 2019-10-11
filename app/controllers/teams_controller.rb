@@ -1,26 +1,8 @@
 class TeamsController < ApplicationController
   def index
-    # base_url = "https://fantasysports.yahooapis.com/fantasy/v2/team/390.l.277245.t.#{team}/stats;type=week;week=#{week}?format=json"
-    base_url = "https://fantasysports.yahooapis.com/fantasy/v2/game/nfl?format=json"
-    # response = HTTParty.get(base_url, {
-    #   headers: {"Authorization" => "Bearer #{session['auth_hash']['credentials']['token']}"}
-    # })
-
-    yid = "dj0yJmk9ZGdpRUlZYXJPR3E0JmQ9WVdrOVJXVjJXVkI2Tm5NbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PThj"
-    ys = "6d7837d0e0bf38aad9a92fb903a56331d71c5042"
-    auth = "Basic #{Base64.strict_encode64("#{yid}:#{ys}")}"
-
-    response = HTTParty.get(base_url, {
-      headers: {"Authorization" => auth}
-    })
-    logger.info response
   end
 
   def show
-    @team = Team.find(params[:id])
-    respond_to do |format|
-      format.json { @team.to_json }
-    end
   end
 
   def update_data
