@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
         resp = JSON.parse(response.body)
 
         if resp.has_key?('error') # need to refresh token
-          auth = "Basic #{Base64.strict_encode64("dj0yJmk9dldWSjdpR0x2aTRVJmQ9WVdrOWFHeEdZVEpwTjJFbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTY1:651cc57fa57dae2ed91a39949df36753ffbf85f8")}"
+          auth = "Basic #{Base64.strict_encode64("#{ENV['YAHOO_CLIENT_ID']}:#{ENV['YAHOO_CLIENT_SECRET']}")}"
           response = HTTParty.post("https://api.login.yahoo.com/oauth2/get_token",
             {
               headers: {
