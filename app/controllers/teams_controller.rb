@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
                 "Authorization" => auth
               },
               body: {
-                redirect_uri: "http://localhost:5000",
+                redirect_uri: "http://idp-eliminator.com",
                 refresh_token: Token.first.refresh_token,
                 grant_type: 'refresh_token'
               }
@@ -36,7 +36,7 @@ class TeamsController < ApplicationController
             headers: {"Authorization" => "Bearer #{Token.first.access_token}"}
           })
           resp = JSON.parse(response.body)
-          logger.info resp.to_yaml
+          logger.info resp
         end
         t = Team.where(team_id: team).first_or_create
         t.update(name: resp['fantasy_content']['team'][0][2]['name'], team_key: resp['fantasy_content']['team'][0][0]['team_key'])
