@@ -36,7 +36,7 @@ class TeamsController < ApplicationController
             headers: {"Authorization" => "Bearer #{Token.first.access_token}"}
           })
           resp = JSON.parse(response.body)
-          logger.info resp.body.to_yaml
+          logger.info resp.to_yaml
         end
         t = Team.where(team_id: team).first_or_create
         t.update(name: resp['fantasy_content']['team'][0][2]['name'], team_key: resp['fantasy_content']['team'][0][0]['team_key'])
