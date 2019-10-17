@@ -1,0 +1,3 @@
+- @team.weeks.each do |week|
+  = link_to "week #{week.week_num}", team_week_path(@team.id, week.week_num, format: :json)
+  %br/

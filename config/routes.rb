@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'weeks/show'
   get '/auth/:provider/callback', to: 'sessions#create'
 
-  resources :teams, only: [:index]
+  resources :teams, only: [:index, :show] do
+    resources :weeks, only: [:show]
+  end
   get '/teams/update_data'
   get '/teams/update_eliminator'
   root to: "home#index"

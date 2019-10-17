@@ -3,6 +3,10 @@ class TeamsController < ApplicationController
   end
 
   def show
+    @team=Team.find(params[:id])
+    @weeks = @team.weeks.map(&:raw_week_data)
+    
+
   end
 
   def update_data
@@ -14,13 +18,9 @@ class TeamsController < ApplicationController
         })
 
         resp = JSON.parse(response.body)
-        logger.info "-----------------------"
-        logger.info resp
 
         if resp.has_key?('error') # need to refresh token
           auth = "Basic #{Base64.strict_encode64("#{ENV['YAHOO_CLIENT_ID']}:#{ENV['YAHOO_CLIENT_SECRET']}")}"
-          logger.info "-----------------------"
-          logger.info auth.to_yaml
           response = HTTParty.post("https://api.login.yahoo.com/oauth2/get_token",
             {
               headers: {
@@ -40,7 +40,7 @@ class TeamsController < ApplicationController
             headers: {"Authorization" => "Bearer #{Token.first.access_token}"}
           })
           resp = JSON.parse(response.body)
-          logger.info resp
+
         end
         t = Team.where(team_id: team).first_or_create
         t.update(name: resp['fantasy_content']['team'][0][2]['name'], team_key: resp['fantasy_content']['team'][0][0]['team_key'])
