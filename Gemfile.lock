@@ -74,6 +74,7 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    csv (3.0.4)
     dotenv (2.7.5)
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
@@ -258,6 +259,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  csv
   dotenv-rails (~> 2.1, >= 2.1.1)
   foreman
   haml-rails (~> 2.0)
